@@ -1,4 +1,3 @@
-.SILENT:
 NASM		  = nasm
 NASM_FLAGS        = -O99 -f elf32 
 CC                = gcc
