@@ -10,6 +10,8 @@ START              = start
 KERNEL            = kernel
 REDIRECT          = > /dev/null 2>&1
 
+all:compile
+
 clean:
 	@echo "removing temp files now...."
 	@rm -rf *.o
@@ -41,11 +43,16 @@ image:
 
 setup:
 	@echo "setting up the environment..."
-	@mkdir -p testmnt;
-	@mount -o loop tanmay_kernel_grub.img ./testmnt;
-	@cp ./$(KERNEL).bin ./testmnt;
-	@umount ./testmnt;
-	@rm -rf ./testmnt;
+	@sudo /sbin/losetup /dev/loop0 tanmay_kernel_grub.img
+	@sudo mount /dev/loop0 /mnt2
+	@sudo cp ./$(KERNEL).bin /mnt2
+	@sudo umount /dev/loop0
+	@sudo /sbin/losetup -d /dev/loop0
+	#@mkdir -p testmnt;
+	#@mount -o loop tanmay_kernel_grub.img ./testmnt;
+	#@cp ./$(KERNEL).bin ./testmnt;
+	#@umount ./testmnt;
+	#@rm -rf ./testmnt;
 	@echo "     Done..."
 
 test:
