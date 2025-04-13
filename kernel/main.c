@@ -59,14 +59,12 @@ static void time_init(void)
 	day = time.tm_mday;
 	month = time.tm_mon;
 	year = time.tm_year;
-	if(time.tm_hour >= 12)
-	ampm = "PM";
-	else
-	ampm ="AM";
+	if(time.tm_hour >= 12){
+		ampm = "PM";
+	}else{
+		ampm ="AM";
+	}	
 }
-
-
-
 
 void main()
 {
@@ -81,7 +79,7 @@ void main()
 
 	keyboard_install();
 	puts("TanUnix 0.02 Version Welcome to My Unix World\n");
-	
+	// mouse_init();
         __asm__ __volatile__("sti");
 	for(;;);
 }
